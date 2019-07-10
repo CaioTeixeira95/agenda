@@ -128,6 +128,11 @@ class Contato {
 	public function saveImage($foto, $telefone) {
 
 		$nomedoarquivo = md5(time().rand(0, 99)).'.jpg';
+
+		if (!is_dir("assets/img/contacts/")) {
+			mkdir("assets/img/contacts", 0777);
+		}
+		
 		move_uploaded_file($foto['tmp_name'], "assets/img/contacts/$nomedoarquivo");
 
 		$this->manipulatePhoto($nomedoarquivo);
